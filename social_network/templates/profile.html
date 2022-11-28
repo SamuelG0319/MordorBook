@@ -5,6 +5,9 @@
 
 
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
@@ -16,6 +19,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/color.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+	<link href="{% static 'miguel/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'miguel/assets/css/ionicons.min.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Istok+Web:400,400i,700,700i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+	<link href="{% static 'miguel/assets/css/main.css' %}" rel="stylesheet">
+	
 
 </head>
 <body>
@@ -30,7 +41,7 @@
 				<form action="/follow" method="POST">
 					{% csrf_token %}
 					<div class="add-btn">
-					<span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a href="/">Home</a></u></b></span>
+					<span style="color: white; font-size: 27px; margin-right: 420px;"><b><u><a href="/">Home</a></u></b></span>
 					
 					{% if user_posts_length == 0 %}
 					<span style="color: white; font-size: 27px;"><b>No Posts</b></span>
@@ -54,6 +65,8 @@
 
 					{% if user_object.username == user.username %}
 					<a href="/settings" data-ripple="">Account Settings</a>
+					<a href="/logout"   data-ripple="">Log Out </a>
+				
 					{% else %}
 					<a data-ripple=""><button type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">{{button_text}}</button></a>
 					{% endif %}
@@ -87,7 +100,7 @@
 							<div class="timeline-info">
 								<ul>
 									<li class="admin-name">
-									  <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;"><b>@{{user_profile.user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
+									  <h5 style="color: rgb(0, 0, 0);white-space: nowrap; width: 110px; font-size: 27px;"><b>@{{user_profile.user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
 									  <!--<span>Group Admin</span>-->
 									</li>
 									<!--<li>
@@ -134,20 +147,31 @@
 							</div><!-- sidebar -->
 
 
-							<div class="col-lg-6">
-								<div class="central-meta">
-									<ul class="photos">
+							<div class="container">
+								<div class="row">
+									
 					
 										{% for post in user_posts %}
-										<li>
-											<a class="strip" href="{{post.image.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt=""></a>
-										</li>
+										<div class="col-md-6">
+											<div class="four-features four-features-left-bottom">
+												<div class="features-img">
+													<a href="{{post.image.url}}" ><img src="{{post.image.url}}" alt="Responsive image" class="img-responsive"></a>
+												</div>
+												<div class="features-content">
+													<h3>{{post.user}}</h3>
+													<p>
+														{{post.caption}}
+													</p>
+													
+												</div>
+											</div>
+										</div>
+
 										{% endfor %}
 										
 										
 										
-									</ul>
+									
 									<!--<div class="lodmore"><button class="btn-view btn-load-more"></button></div>-->
 								</div><!-- photos -->
 							</div><!-- centerl meta -->
@@ -168,6 +192,10 @@
 	<script data-cfasync="false" src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script src="{% static 'js/main.min.js' %}"></script>
 	<script src="{% static 'js/script.js' %}"></script>
 
+	
+	<script src="{% static 'miguel/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'miguel/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'miguel/assets/js/main.js' %}"></script>
 </body>	
 
 

@@ -41,4 +41,18 @@ class FollowersCount(models.Model):
     def __str__(self):
         return self.user
 
+class Contact(models.Model):
+
+    class Meta:
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
+
+    name = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(max_length=100, blank=True, null=True)
+    message = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 # Create your models here.

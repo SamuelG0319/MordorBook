@@ -12,5 +12,6 @@ urlpatterns = [
     path('profile/<str:pk>', views.profile, name='profile'),
     path('follow', views.follow, name='follow'),
     path('search', views.search, name='search'),
+    path('contact', views.ContactUsView.as_view(), name='contact')
 ]
  #PRUEBA DE CAMBIO

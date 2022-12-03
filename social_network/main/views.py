@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Post, LikePost, FollowersCount
+from .forms import ContactForm
 from itertools import chain
+from django.views import generic
 import random
 
 @login_required(login_url='signin')
@@ -255,5 +257,13 @@ def search(request):
         
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list})
-
 # Create your views here.
+
+class ContactUsView(generic.FormView):
+	form_class = ContactForm #Tabla de donde se obtiene la información para la vista.
+	template_name = "contact.html" #Plantilla HTML a donde iremos cuando ejecutemos esta vista.
+	success_url = '/' #Colocamos el signo que se coloca al terminar la url.
+
+	def form_valid(self, form): #Creamos la función para validar los datos.
+		form.save() #Si el formulario está completo, se guardan los datos el el modelo correspondiente.
+		return super().form_valid(form)

@@ -3,8 +3,10 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Post, LikePost, Comment, FollowersCount
-from . forms import CommentForm
+from .models import Profile, Post, LikePost, FollowersCount
+from .forms import ContactForm, CommentForm
+from itertools import chain
+from django.views import generic
 from itertools import chain
 from datetime import datetime
 import random
@@ -198,7 +200,7 @@ def add_comment(request, pk):
         if form.is_valid():
             body = form.cleaned_data['comment_body'];
             
-            c = Comment(post=post, comment_body=body, date_added=datetime.now())
+            c = CommentForm(post=post, comment_body=body, date_added=datetime.now())
             c.save()
         else:
             print('form is invalid')
@@ -284,3 +286,21 @@ def search(request):
     return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list})
 
 # Create your views here.
+
+class ContactUsView(generic.FormView):
+	form_class = ContactForm #Tabla de donde se obtiene la información para la vista.
+	template_name = "contact.html" #Plantilla HTML a donde iremos cuando ejecutemos esta vista.
+	success_url = '/' #Colocamos el signo que se coloca al terminar la url.
+
+	def form_valid(self, form): #Creamos la función para validar los datos.
+		form.save() #Si el formulario está completo, se guardan los datos el el modelo correspondiente.
+		return super().form_valid(form)
+
+#Se crea el constructur u objeto para visualizar la sección de explorar.
+class ExploreView(generic.ListView):
+	model = Post #Tabla de donde se obtiene la información para la vista.
+	template_name = "explore.html" #Plantilla HTML a donde iremos cuando ejecutemos esta vista.
+	paginate_by = 10
+	
+	def get_queryset(self): #Se obtienen los registros guardados.
+		return super().get_queryset()

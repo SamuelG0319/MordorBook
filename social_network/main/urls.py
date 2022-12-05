@@ -12,6 +12,8 @@ urlpatterns = [
     path('profile/<str:pk>', views.profile, name='profile'),
     path('follow', views.follow, name='follow'),
     path('search', views.search, name='search'),
+    path('contact', views.ContactUsView.as_view(), name='contact'), #Url para la vista de contacto.
+    path('explore', views.ExploreView.as_view(), name='explore'), #Url para la vista de exploración.
     path('<int:pk>/add-comment', views.add_comment, name='add-comment'),
 ]
  #PRUEBA DE CAMBIO

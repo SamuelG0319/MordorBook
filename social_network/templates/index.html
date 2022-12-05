@@ -43,6 +43,13 @@
 
                     </div>
                     </form>
+
+                    <form action="/explore"> <!--Este es el icono que lleva a la sección de exploración-->
+                        {% csrf_token %}
+                        <div class="iconCheck">
+                            <button type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button> 
+                        </div>
+                    </form>
                     <div class="right-side lg:pr-4">
                          <!-- upload -->
                         <a href="#"
@@ -118,6 +125,7 @@
                         <a href="/profile/{{user}}">
                             <img src="{{user_profile.profileimg.url}}" class="header-avatar" alt="">
                         </a>
+
                     </div>
                 </div>
             </header>

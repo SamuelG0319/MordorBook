@@ -1,0 +1,125 @@
+/*Title explore*/
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+h1{
+    font-weight: 800;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+p{
+    font-weight: 500;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  
+  .row img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    filter: grayscale(6) brightness(0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s linear;
+  }
+  .row img:hover {
+    filter: grayscale(0);
+  }
+  @media screen and (max-width: 800px) {
+    .row {
+      flex: 50%;
+      max-width: 50%;
+    }
+  } 
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .row {
+      flex: 100%;
+      max-width: 100%;
+    }
+    .row img {
+      filter: grayscale(0) brightness(1);
+    }
+  }
+
+.img-fluid {
+    max-width: 100%;
+    max-height: 100%;
+    height: 250px;
+}
+
+.img-fluid2{
+  max-width: 100%;
+  height: 85%;
+}
+
+/* Navbar */
+.megamenu {
+  position: static;
+}
+
+.megamenu .dropdown-menu {
+  background: none;
+  border: none;
+  width: 100%;
+}
+
+body {
+  background: #eaafc8;
+  background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);
+  background: linear-gradient(to right, #eaafc8, #654ea3);
+  min-height: 100vh;
+}
+
+code {
+  color: #745eb1;
+  background: #fff;
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.text-uppercase {
+  letter-spacing: 0.08em;
+}
+
+.loader{
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #fff;
+  animation: smokeOut 1s ease-in-out infinite alternate;
+  text-shadow: 0 0 1px white;
+}
+.loader:before {
+  content: "Encuentra nuevos destinos, nuevos amigos, nuevas ideas...";
+}
+
+@keyframes smokeOut {
+  100% {
+    opacity: 0.08;
+    filter: blur(5px);
+    letter-spacing: 4px;
+  }
+}
+
+/*--------------------------------------------- Explore button index ---------------------------------*/
+.iconCheck {
+  position: relative;
+}
+
+.fa {
+position:absolute;
+padding: 1rem!important;
+right: 100px;
+}

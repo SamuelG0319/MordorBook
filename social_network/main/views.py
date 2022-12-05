@@ -257,6 +257,7 @@ def search(request):
         
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list})
+
 # Create your views here.
 
 class ContactUsView(generic.FormView):
@@ -267,3 +268,12 @@ class ContactUsView(generic.FormView):
 	def form_valid(self, form): #Creamos la función para validar los datos.
 		form.save() #Si el formulario está completo, se guardan los datos el el modelo correspondiente.
 		return super().form_valid(form)
+
+#Se crea el constructur u objeto para visualizar la sección de explorar.
+class ExploreView(generic.ListView):
+	model = Post #Tabla de donde se obtiene la información para la vista.
+	template_name = "explore.html" #Plantilla HTML a donde iremos cuando ejecutemos esta vista.
+	paginate_by = 10
+	
+	def get_queryset(self): #Se obtienen los registros guardados.
+		return super().get_queryset()

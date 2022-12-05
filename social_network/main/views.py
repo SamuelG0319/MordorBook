@@ -3,10 +3,17 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from .models import Profile, Post, LikePost, FollowersCount
 from .forms import ContactForm
 from itertools import chain
 from django.views import generic
+=======
+from .models import Profile, Post, LikePost, Comment, FollowersCount
+from . forms import CommentForm
+from itertools import chain
+from datetime import datetime
+>>>>>>> main
 import random
 
 @login_required(login_url='signin')
@@ -187,6 +194,31 @@ def like_post(request):
         post.save()
 
         return redirect('/')
+
+def add_comment(request, pk):
+    post = Post.objects.get(id=pk)
+
+    form = CommentForm(instance=post)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=post)
+        if form.is_valid():
+            body = form.cleaned_data['comment_body'];
+            
+            c = Comment(post=post, comment_body=body, date_added=datetime.now())
+            c.save()
+        else:
+            print('form is invalid')
+
+        return redirect('/')
+    else:
+        form = CommentForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'add_comment.html', context)
 
 @login_required(login_url='signin')
 def profile(request, pk):

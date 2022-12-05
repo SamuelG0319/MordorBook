@@ -1,4 +1,5 @@
 from django import forms
+<<<<<<< HEAD
 from .models import Contact
 
 class ContactForm(forms.ModelForm):
@@ -9,3 +10,12 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'email', 'message']
+=======
+
+from . models import Comment
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('comment_body',)
+>>>>>>> main
